@@ -26,3 +26,37 @@ breve explicação de cada um dos termos:
 Na época, todos os desenvolvedores concordavam que a comunicação com um computador usando chaves de 1/0 era seriamente irritante.
 Foi apenas lógico que eles tivessem a ideia de criar um software para se comunicar com um computador usando linhas de comando interativas em uma linguagem um pouco próxima da linguagem humana.
 Graças ao Minishell, você poderá viajar no tempo e voltar aos problemas enfrentados pelas pessoas quando o Windows não existia.//
+
+-
+-
+-
+shell deve:
+• Exibir um prompt ao esperar por um novo comando.
+• Ter um histórico de trabalho.
+• Procurar e lançar o executável correto (com base na variável PATH ou usando um caminho relativo ou absoluto).
+• Não utilizar mais de uma variável global. Pense nisso. Você terá que explicar o propósito dela.
+• Não interpretar aspas não fechadas ou caracteres especiais que não são exigidos pelo assunto, como \ (barra invertida) ou ; (ponto e vírgula).
+• Manipular ' (aspas simples) que deve impedir a shell de interpretar os metacaracteres na sequência entre aspas.
+• Manipular " (aspas duplas) que deve impedir a shell de interpretar os metacaracteres na sequência entre aspas, exceto pelo $ (sinal de dólar).
+• Implementar redirecionamentos:
+◦ < deve redirecionar a entrada.
+◦ > deve redirecionar a saída.
+◦ << deve ser fornecido um delimitador e, em seguida, ler a entrada até que uma linha contendo o delimitador seja vista. No entanto, isso não precisa atualizar o histórico!
+◦ >> deve redirecionar a saída no modo de anexação.
+• Implementar tubos (caractere |). A saída de cada comando no pipeline é conectada à entrada do próximo comando por meio de um tubo.
+• Manipular variáveis de ambiente ($ seguido de uma sequência de caracteres) que devem se expandir para seus valores.
+• Manipular $? que deve se expandir para o status de saída do pipeline em primeiro plano executado mais recentemente.
+• Manipular ctrl-C, ctrl-D e ctrl-\ que devem se comportar como no bash.
+• No modo interativo:
+◦ ctrl-C exibe um novo prompt em uma nova linha.
+◦ ctrl-D sai da shell.
+◦ ctrl-\ não faz nada.
+• Sua shell deve implementar os seguintes comandos internos:
+◦ echo com a opção -n
+◦ cd com apenas um caminho relativo ou absoluto
+◦ pwd sem opções
+◦ export sem opções
+◦ unset sem opções
+◦ env sem opções ou argumentos
+◦ exit sem opções
+A função readline() pode causar vazamentos de memória. Você não precisa corrigi-los. Mas isso não significa que seu próprio código, sim, o código que você escreveu, possa ter vazamentos de memória.
